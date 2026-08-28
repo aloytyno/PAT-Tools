@@ -37,7 +37,7 @@ if nargin < 4 || isempty(numFolds)
     numFolds = 5;
 end
 
-maxComponents = max(1, min(maxComponents, size(xTrain, 1) - 1));
+maxComponents = max(1, min([maxComponents, size(xTrain, 1) - 1, size(xTrain, 2)]));
 % PLSREGRESS returns mean squared error for each model size, including the
 % zero-component intercept-only model in the first column.
 [~, ~, ~, ~, ~, ~, mse] = plsregress(xTrain, yTrain, maxComponents, "CV", numFolds);
