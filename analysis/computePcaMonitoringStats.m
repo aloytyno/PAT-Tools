@@ -34,7 +34,11 @@ if nargin < 3 || isempty(alpha)
     alpha = 0.95;
 end
 
-[coeff, score, latent, ~, explained, mu] = pca(xTrain, "NumComponents", numComponents);
+[coeff, score, latent] = pca(xTrain);
+mu = mean(xTrain, 1);
+explained = 100 * latent / sum(latent);
+coeff = coeff(:, 1:numComponents);
+score = score(:, 1:numComponents);
 % Reconstruct the training data from the retained PCA subspace.
 t2 = sum((score(:, 1:numComponents) .^ 2) ./ latent(1:numComponents)', 2);
 xHat = score(:, 1:numComponents) * coeff(:, 1:numComponents)' + mu;
