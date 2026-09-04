@@ -33,18 +33,17 @@ jobs:
         with:
           test-results-junit: test-results/results.xml
           code-coverage-cobertura: code-coverage/coverage.xml
- 
+          
       - name: Upload test results
-         if: always()
-         uses: actions/upload-artifact@v4
-         with:
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
            name: matlab-test-results
            path: test-results/
- 
-     - name: Publish test results
-       if: always()
-       uses: dorny/test-reporter@v2
-       with:
-         name: MATLAB Tests
-         path: test-results/results.xml
-         reporter: java-junit
+      - name: Publish test results
+        if: always()
+        uses: dorny/test-reporter@v2
+        with:
+          name: MATLAB Tests
+          path: test-results/results.xml
+          reporter: java-junit
