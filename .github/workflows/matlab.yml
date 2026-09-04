@@ -30,18 +30,21 @@ jobs:
       # Run tests authored using the MATLAB unit testing framework or Simulink Test.
       - name: Run MATLAB tests
         uses: matlab-actions/run-tests@v3
-        # If you are not using a MATLAB project, add your source code to the path using the source-folder input.
-        # with:
-        #   source-folder: myfolderA; myfolderB
-
-      # Alternatively, run tasks from your buildfile.m.
-      # - name: Run MATLAB build
-      #   uses: matlab-actions/run-build@v3
-      #   with:
-      #     tasks: test
-
-      # Alternatively, run MATLAB scripts, functions, and statements.
-      # - name: Run MATLAB command
-      #   uses: matlab-actions/run-command@v3
-      #   with:
-      #     command: results = runtests('IncludeSubfolders',true); assertSuccess(results);
+        with:
+          test-results-junit: test-results/results.xml
+          code-coverage-cobertura: code-coverage/coverage.xml
+ 
+      - name: Upload test results
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+           name: matlab-test-results
+           path: test-results/
+ 
+     - name: Publish test results
+       if: always()
+       uses: dorny/test-reporter@v2
+       with:
+         name: MATLAB Tests
+         path: test-results/results.xml
+         reporter: java-junit
