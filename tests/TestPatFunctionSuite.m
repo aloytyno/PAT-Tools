@@ -58,6 +58,7 @@ classdef TestPatFunctionSuite < matlab.unittest.TestCase
             testCase.verifyEqual(spectra(1, :), [0.11 0.12 0.13], AbsTol = 1e-12);
         end
 
+        
         function testImportNirSpectraThrowsForMissingFile(testCase)
             verifyThrowsAny(testCase, @() importNirSpectra(fullfile(testCase.TempRoot, "missing")));
         end
