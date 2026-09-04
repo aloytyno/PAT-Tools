@@ -23,7 +23,7 @@ jobs:
         with:
           release: latest
           cache: true
-          products: Statistics_Toolbox
+          products: product.Statistics_and_Machine_Learning_Toolbox
           # Set up additional products using the products input.
           # See https://github.com/matlab-actions/setup-matlab/#set-up-matlab
           # products: Simulink Deep_Learning_Toolbox
