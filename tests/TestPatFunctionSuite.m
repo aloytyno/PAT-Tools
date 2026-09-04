@@ -1,4 +1,4 @@
-classdef testPatFunctionSuite < matlab.unittest.TestCase
+classdef TestPatFunctionSuite < matlab.unittest.TestCase
     % End-to-end unit tests for the reusable PAT helper functions.
 
     properties
