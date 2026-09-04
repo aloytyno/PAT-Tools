@@ -31,6 +31,7 @@ jobs:
       - name: Run MATLAB tests
         uses: matlab-actions/run-tests@v3
         with:
+          select-by-folder: tests
           test-results-junit: test-results/results.xml
           code-coverage-cobertura: code-coverage/coverage.xml
           
